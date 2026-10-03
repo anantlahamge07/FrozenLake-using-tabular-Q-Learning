@@ -24,7 +24,7 @@ class Agent:
         # getting the initial state and some unnecessary info from the environment
         self.state, _ = self.env.reset()
         # The value table for each state and action pair holding the Q(s,a) values  
-        self.values: tt.Dict[ValuesKey. float] = defaultdict(float)
+        self.values: tt.Dict[ValuesKey, float] = defaultdict(float)
 
     # This method just gives us the next transition obtained from the environment
     def sample_env (self) -> tt.Tuple[State, Action, float, State]:

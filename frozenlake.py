@@ -1,4 +1,4 @@
-import typing as tp
+import typing as tt
 import gymnasium as gym
 from collections import defaultdict
 from torch.utils.tensorboard.writer import SummaryWriter
@@ -33,7 +33,7 @@ class Agent:
         # The action 
         action = self.env.action_space.sample()
         # Taking a step in the environment
-        new_state, reward, is_done, is_truncated = self.step()
+        new_state, reward, is_done, is_truncated, _  = self.env.step(action)
         # resetting the environment if the episode has ended or truncated
         if is_done or is_truncated:
             self.state, _ = self.env.reset()
@@ -76,11 +76,17 @@ class Agent:
             # getting the best action to take from the given state
             _, action = self.best_action_value(state)
             # doing next transition in the environment
-            new_state, reward, is_done, is_truncated = env.step(action)
-            # accumulation the total reward for the whole episode
+            new_state, reward, is_done, is_truncated, _  = env.step(action)
+            # accumulation the total reward
             total_reward += reward
             if is_done or is_truncated:
                 break
+            # updating the current state
             state = new_state
-
         return total_reward
+    
+# The training loop
+if __name__ == "__main__":
+    # our agent
+    agent = Agent()
+    

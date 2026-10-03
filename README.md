@@ -60,10 +60,6 @@ Then open the local URL printed by TensorBoard. Run directories and event files 
 └── LICENSE         # MIT License
 ```
 
-## Current limitation
-
-The type annotation for `self.values` in `frozenlake.py` is currently malformed (`tt.Dict[ValuesKey. float]`). Python evaluates that annotation when importing the module, so `python main.py` will fail before training starts. Correct it to `tt.Dict[ValuesKey, float]` before running the commands above. There is no dependency lock file yet, so installs use the latest compatible package versions available to pip.
-
 ## License
 
 This project is released under the MIT License. See [LICENSE](LICENSE).
